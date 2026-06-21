@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_it_equipement_form" model="ir.ui.view">
+        <field name="name">it.equipement.form</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_export_excel" string=" Exporter Excel" type="object" class="btn-secondary"/>
+
+                    <button name="action_affecter" string="Affecter" type="object"
+                            class="btn-primary" invisible="state != 'disponible'"/>
+                    <button name="action_maintenance" string="Maintenance" type="object"
+                            invisible="state == 'maintenance'"/>
+                    <button name="action_disponible" string="Disponible" type="object"
+                            invisible="state == 'disponible'"/>
+                    <button name="action_hors_service" string="Hors Service" type="object"
+                            class="btn-danger" invisible="state == 'hors_service'"/>
+                       
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="disponible,affecte,maintenance,hors_service"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Nom de l'équipement"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="type_equipement"/>
+                            <field name="marque"/>
+                            <field name="modele"/>
+                            <field name="numero_serie"/>
+                        </group>
+                        <group>
+                            <field name="date_acquisition"/>
+                            <field name="valeur_achat"/>
+                            <field name="employee_id"/>
+                            <field name="date_affectation"/>
+                            <field name="localisation"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="note"/>
+                        </page>
+                        <page string="Interventions">
+                            <field name="intervention_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="type_intervention"/>
+                                    <field name="date_debut"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_it_equipement_list" model="ir.ui.view">
+        <field name="name">it.equipement.list</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="type_equipement"/>
+                <field name="marque"/>
+                <field name="employee_id"/>
+                <field name="localisation"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'disponible'"
+                       decoration-warning="state == 'maintenance'"
+                       decoration-danger="state == 'hors_service'"
+                       decoration-info="state == 'affecte'"/>
+            </list>
+        </field>
+    </record>
+
+<!-- Kanban View -->
+<record id="view_it_equipement_kanban" model="ir.ui.view">
+    <field name="name">it.equipement.kanban</field>
+    <field name="model">it.equipement</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_small_column">
+            <field name="name"/>
+            <field name="type_equipement"/>
+            <field name="state"/>
+            <field name="employee_id"/>
+            <field name="marque"/>
+            <field name="localisation"/>
+            <field name="reference"/>
+            <templates>
+                <t t-name="card">
+                    <div class="oe_kanban_card oe_kanban_global_click p-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong class="fs-5"><field name="name"/></strong>
+                            <span t-attf-class="badge rounded-pill
+                                #{record.state.raw_value == 'disponible' ? 'bg-success' : ''}
+                                #{record.state.raw_value == 'affecte' ? 'bg-primary' : ''}
+                                #{record.state.raw_value == 'maintenance' ? 'bg-warning' : ''}
+                                #{record.state.raw_value == 'hors_service' ? 'bg-danger' : ''}">
+                                <field name="state"/>
+                            </span>
+                        </div>
+                        <div class="text-muted mb-1">
+                            <i class="fa fa-tag me-1"/> <field name="type_equipement"/>
+                            <span class="ms-2"><i class="fa fa-industry me-1"/><field name="marque"/></span>
+                        </div>
+                        <div class="mb-1">
+                            <i class="fa fa-map-marker me-1 text-danger"/>
+                            <field name="localisation"/>
+                        </div>
+                        <div t-if="record.employee_id.raw_value" class="mb-1">
+                            <i class="fa fa-user me-1 text-primary"/>
+                            <field name="employee_id"/>
+                        </div>
+                        <div class="text-muted small mt-2">
+                            <i class="fa fa-barcode me-1"/>
+                            <field name="reference"/>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+    <!-- Search View -->
+    <record id="view_it_equipement_search" model="ir.ui.view">
+        <field name="name">it.equipement.search</field>
+        <field name="model">it.equipement</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="employee_id"/>
+                <filter string="Disponible" name="disponible" domain="[('state','=','disponible')]"/>
+                <filter string="Affecté" name="affecte" domain="[('state','=','affecte')]"/>
+                <filter string="Maintenance" name="maintenance" domain="[('state','=','maintenance')]"/>
+                <filter string="Hors Service" name="hors_service" domain="[('state','=','hors_service')]"/>
+                <group expand="0" string="Grouper par">
+                    <filter string="Type" name="type" context="{'group_by':'type_equipement'}"/>
+                    <filter string="État" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_it_equipement" model="ir.actions.act_window">
+        <field name="name">Équipements</field>
+        <field name="res_model">it.equipement</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_it_equipement_search"/>
+    </record>
+</odoo>

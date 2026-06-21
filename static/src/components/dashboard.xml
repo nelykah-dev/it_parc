@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="it_parc.Dashboard">
+        <div class="o_it_parc_dashboard">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>Tableau de Bord IT Parc</h1>
+                <p>Vue d'ensemble du parc informatique — TECHPARK CI</p>
+            </div>
+
+            <!-- KPIs Row -->
+            <div class="kpi-grid">
+                <!-- KPI 1 - Total dark -->
+                <div class="kpi-card kpi-card-dark">
+                    <div class="kpi-badge">Parc</div>
+                    <div class="kpi-icon-box">
+                        <i class="fa fa-server" style="color:white"/>
+                    </div>
+                    <div class="kpi-subtitle kpi-subtitle-dark">Total Équipements</div>
+                    <div class="kpi-value kpi-value-dark"><t t-esc="state.total_equipements"/></div>
+                    <div class="kpi-label kpi-label-dark">unités enregistrées</div>
+                </div>
+
+                <!-- KPI 2 - Disponibles -->
+                <div class="kpi-card">
+                    <div class="kpi-badge">Libre</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-check-circle" style="color:#2e7d32"/>
+                    </div>
+                    <div class="kpi-subtitle">Disponibles</div>
+                    <div class="kpi-value"><t t-esc="state.disponibles"/></div>
+                    <div class="kpi-label">équipements libres</div>
+                </div>
+
+                <!-- KPI 3 - Affectés -->
+                <div class="kpi-card">
+                    <div class="kpi-badge">Actif</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-user" style="color:#1565c0"/>
+                    </div>
+                    <div class="kpi-subtitle">Affectés</div>
+                    <div class="kpi-value"><t t-esc="state.affectes"/></div>
+                    <div class="kpi-label">en cours d'utilisation</div>
+                </div>
+
+                <!-- KPI 4 - Maintenance -->
+                <div class="kpi-card">
+                    <div class="kpi-badge kpi-badge-orange">Attention</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-wrench" style="color:#e65100"/>
+                    </div>
+                    <div class="kpi-subtitle">En Maintenance</div>
+                    <div class="kpi-value"><t t-esc="state.en_maintenance"/></div>
+                    <div class="kpi-label">en cours de réparation</div>
+                </div>
+
+                <!-- KPI 5 - Hors service -->
+                <div class="kpi-card">
+                    <div class="kpi-badge kpi-badge-red">Critique</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-times-circle" style="color:#c62828"/>
+                    </div>
+                    <div class="kpi-subtitle">Hors Service</div>
+                    <div class="kpi-value"><t t-esc="state.hors_service"/></div>
+                    <div class="kpi-label">à remplacer</div>
+                </div>
+
+                <!-- KPI 6 - Interventions -->
+                <div class="kpi-card">
+                    <div class="kpi-badge">En cours</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-cogs" style="color:#00838f"/>
+                    </div>
+                    <div class="kpi-subtitle">Interventions</div>
+                    <div class="kpi-value"><t t-esc="state.interventions_en_cours"/></div>
+                    <div class="kpi-label">en cours</div>
+                </div>
+
+                <!-- KPI 7 - Contrats -->
+                <div class="kpi-card">
+                    <div class="kpi-badge kpi-badge-orange">Urgent</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-file-text" style="color:#e65100"/>
+                    </div>
+                    <div class="kpi-subtitle">Contrats Expirants</div>
+                    <div class="kpi-value"><t t-esc="state.contrats_expirants"/></div>
+                    <div class="kpi-label">dans moins de 30 jours</div>
+                </div>
+
+                <!-- KPI 8 - Alertes -->
+                <div class="kpi-card">
+                    <div class="kpi-badge kpi-badge-red">Nouveau</div>
+                    <div class="kpi-icon-box kpi-icon-box-light">
+                        <i class="fa fa-bell" style="color:#c62828"/>
+                    </div>
+                    <div class="kpi-subtitle">Alertes</div>
+                    <div class="kpi-value"><t t-esc="state.alertes_nouvelles"/></div>
+                    <div class="kpi-label">non traitées</div>
+                </div>
+            </div>
+
+            <!-- Graphique SVG -->
+            <div class="chart-section">
+                <div class="chart-header">
+                    <div>
+                        <h3>Répartition des Équipements par État</h3>
+                        <p>Vue comparative du statut du parc</p>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background:#1a3c2e"/>
+                            <span>Disponible</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background:#4caf50"/>
+                            <span>Affecté</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background:#ff9800"/>
+                            <span>Maintenance</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background:#f44336"/>
+                            <span>Hors Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <svg class="bar-chart-svg" viewBox="0 0 600 250" preserveAspectRatio="xMidYMid meet">
+                    <!-- Grid lines -->
+                    <line x1="60" y1="20" x2="580" y2="20" class="grid-line"/>
+                    <line x1="60" y1="70" x2="580" y2="70" class="grid-line"/>
+                    <line x1="60" y1="120" x2="580" y2="120" class="grid-line"/>
+                    <line x1="60" y1="170" x2="580" y2="170" class="grid-line"/>
+                    <line x1="60" y1="220" x2="580" y2="220" class="grid-line"/>
+
+                    <!-- Y axis labels -->
+                    <text x="50" y="24" class="axis-label" text-anchor="end">10</text>
+                    <text x="50" y="74" class="axis-label" text-anchor="end">8</text>
+                    <text x="50" y="124" class="axis-label" text-anchor="end">6</text>
+                    <text x="50" y="174" class="axis-label" text-anchor="end">4</text>
+                    <text x="50" y="224" class="axis-label" text-anchor="end">2</text>
+
+                    <!-- Bars - Disponible -->
+                    <g class="bar-group">
+                        <t t-set="h1" t-value="state.disponibles * 20"/>
+                        <rect t-attf-x="80" t-attf-y="#{220 - h1}" t-attf-width="60" t-attf-height="#{h1}"
+                              fill="#1a3c2e" rx="6"/>
+                        <text x="110" y="240" class="axis-label" text-anchor="middle">Disponible</text>
+                        <t t-set="val1" t-value="220 - h1 - 8"/>
+                        <text t-attf-x="110" t-attf-y="#{val1}" class="axis-label" text-anchor="middle"
+                              style="fill:#1a3c2e;font-weight:700">
+                            <t t-esc="state.disponibles"/>
+                        </text>
+                    </g>
+
+                    <!-- Bars - Affecté -->
+                    <g class="bar-group">
+                        <t t-set="h2" t-value="state.affectes * 20"/>
+                        <rect t-attf-x="210" t-attf-y="#{220 - h2}" t-attf-width="60" t-attf-height="#{h2}"
+                              fill="#4caf50" rx="6"/>
+                        <text x="240" y="240" class="axis-label" text-anchor="middle">Affecté</text>
+                        <t t-set="val2" t-value="220 - h2 - 8"/>
+                        <text t-attf-x="240" t-attf-y="#{val2}" class="axis-label" text-anchor="middle"
+                              style="fill:#4caf50;font-weight:700">
+                            <t t-esc="state.affectes"/>
+                        </text>
+                    </g>
+
+                    <!-- Bars - Maintenance -->
+                    <g class="bar-group">
+                        <t t-set="h3" t-value="state.en_maintenance * 20"/>
+                        <rect t-attf-x="340" t-attf-y="#{220 - h3}" t-attf-width="60" t-attf-height="#{h3}"
+                              fill="#ff9800" rx="6"/>
+                        <text x="370" y="240" class="axis-label" text-anchor="middle">Maintenance</text>
+                        <t t-set="val3" t-value="220 - h3 - 8"/>
+                        <text t-attf-x="370" t-attf-y="#{val3}" class="axis-label" text-anchor="middle"
+                              style="fill:#ff9800;font-weight:700">
+                            <t t-esc="state.en_maintenance"/>
+                        </text>
+                    </g>
+
+                    <!-- Bars - Hors Service -->
+                    <g class="bar-group">
+                        <t t-set="h4" t-value="state.hors_service * 20"/>
+                        <rect t-attf-x="470" t-attf-y="#{220 - h4}" t-attf-width="60" t-attf-height="#{h4}"
+                              fill="#f44336" rx="6"/>
+                        <text x="500" y="240" class="axis-label" text-anchor="middle">Hors Service</text>
+                        <t t-set="val4" t-value="220 - h4 - 8"/>
+                        <text t-attf-x="500" t-attf-y="#{val4}" class="axis-label" text-anchor="middle"
+                              style="fill:#f44336;font-weight:700">
+                            <t t-esc="state.hors_service"/>
+                        </text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </t>
+</templates>

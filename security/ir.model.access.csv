@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_it_equipement_user,it.equipement user,it_parc.model_it_equipement,base.group_user,1,0,0,0
+access_it_equipement_manager,it.equipement manager,it_parc.model_it_equipement,base.group_system,1,1,1,1
+access_it_intervention_user,it.intervention user,it_parc.model_it_intervention,base.group_user,1,0,0,0
+access_it_intervention_manager,it.intervention manager,it_parc.model_it_intervention,base.group_system,1,1,1,1
+access_it_contrat_user,it.contrat user,it_parc.model_it_contrat,base.group_user,1,0,0,0
+access_it_contrat_manager,it.contrat manager,it_parc.model_it_contrat,base.group_system,1,1,1,1
+access_it_alerte_user,it.alerte user,it_parc.model_it_alerte,base.group_user,1,0,0,0
+access_it_alerte_manager,it.alerte manager,it_parc.model_it_alerte,base.group_system,1,1,1,1

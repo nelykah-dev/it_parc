@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Équipements -->
+    <record id="equipement_01" model="it.equipement">
+        <field name="name">Dell Latitude 5520</field>
+        <field name="type_equipement">ordinateur</field>
+        <field name="marque">Dell</field>
+        <field name="modele">Latitude 5520</field>
+        <field name="numero_serie">DL5520-001</field>
+        <field name="date_acquisition">2023-01-15</field>
+        <field name="valeur_achat">850000</field>
+        <field name="state">disponible</field>
+        <field name="localisation">Salle Informatique A</field>
+    </record>
+    <record id="equipement_02" model="it.equipement">
+        <field name="name">HP LaserJet Pro</field>
+        <field name="type_equipement">imprimante</field>
+        <field name="marque">HP</field>
+        <field name="modele">LaserJet Pro M404</field>
+        <field name="numero_serie">HP404-002</field>
+        <field name="date_acquisition">2022-06-10</field>
+        <field name="valeur_achat">320000</field>
+        <field name="state">affecte</field>
+        <field name="localisation">Bureau Direction</field>
+    </record>
+    <record id="equipement_03" model="it.equipement">
+        <field name="name">Serveur Dell PowerEdge</field>
+        <field name="type_equipement">serveur</field>
+        <field name="marque">Dell</field>
+        <field name="modele">PowerEdge R740</field>
+        <field name="numero_serie">PE740-003</field>
+        <field name="date_acquisition">2021-03-20</field>
+        <field name="valeur_achat">4500000</field>
+        <field name="state">affecte</field>
+        <field name="localisation">Salle Serveurs</field>
+    </record>
+    <record id="equipement_04" model="it.equipement">
+        <field name="name">Cisco Switch 24 ports</field>
+        <field name="type_equipement">reseau</field>
+        <field name="marque">Cisco</field>
+        <field name="modele">Catalyst 2960</field>
+        <field name="numero_serie">CS2960-004</field>
+        <field name="date_acquisition">2022-09-01</field>
+        <field name="valeur_achat">1200000</field>
+        <field name="state">affecte</field>
+        <field name="localisation">Salle Serveurs</field>
+    </record>
+    <record id="equipement_05" model="it.equipement">
+        <field name="name">Lenovo ThinkPad E15</field>
+        <field name="type_equipement">ordinateur</field>
+        <field name="marque">Lenovo</field>
+        <field name="modele">ThinkPad E15</field>
+        <field name="numero_serie">LN15-005</field>
+        <field name="date_acquisition">2023-05-12</field>
+        <field name="valeur_achat">750000</field>
+        <field name="state">maintenance</field>
+        <field name="localisation">Atelier Technique</field>
+    </record>
+    <record id="equipement_06" model="it.equipement">
+        <field name="name">HP EliteBook 840</field>
+        <field name="type_equipement">ordinateur</field>
+        <field name="marque">HP</field>
+        <field name="modele">EliteBook 840 G8</field>
+        <field name="numero_serie">HP840-006</field>
+        <field name="date_acquisition">2023-02-28</field>
+        <field name="valeur_achat">920000</field>
+        <field name="state">disponible</field>
+        <field name="localisation">Salle Informatique B</field>
+    </record>
+    <record id="equipement_07" model="it.equipement">
+        <field name="name">Canon ImageRunner</field>
+        <field name="type_equipement">imprimante</field>
+        <field name="marque">Canon</field>
+        <field name="modele">ImageRunner 2630</field>
+        <field name="numero_serie">CN2630-007</field>
+        <field name="date_acquisition">2021-11-05</field>
+        <field name="valeur_achat">2100000</field>
+        <field name="state">hors_service</field>
+        <field name="localisation">Salle Reprographie</field>
+    </record>
+    <record id="equipement_08" model="it.equipement">
+        <field name="name">Ubiquiti UniFi AP</field>
+        <field name="type_equipement">reseau</field>
+        <field name="marque">Ubiquiti</field>
+        <field name="modele">UniFi AP AC Pro</field>
+        <field name="numero_serie">UB-AP-008</field>
+        <field name="date_acquisition">2022-12-15</field>
+        <field name="valeur_achat">180000</field>
+        <field name="state">affecte</field>
+        <field name="localisation">Couloir Principal</field>
+    </record>
+    <record id="equipement_09" model="it.equipement">
+        <field name="name">Samsung Galaxy Tab</field>
+        <field name="type_equipement">autre</field>
+        <field name="marque">Samsung</field>
+        <field name="modele">Galaxy Tab S7</field>
+        <field name="numero_serie">SG-S7-009</field>
+        <field name="date_acquisition">2023-07-20</field>
+        <field name="valeur_achat">450000</field>
+        <field name="state">disponible</field>
+        <field name="localisation">Salle de Réunion</field>
+    </record>
+    <record id="equipement_10" model="it.equipement">
+        <field name="name">APC Smart-UPS</field>
+        <field name="type_equipement">autre</field>
+        <field name="marque">APC</field>
+        <field name="modele">Smart-UPS 1500VA</field>
+        <field name="numero_serie">APC-UPS-010</field>
+        <field name="date_acquisition">2022-04-10</field>
+        <field name="valeur_achat">650000</field>
+        <field name="state">affecte</field>
+        <field name="localisation">Salle Serveurs</field>
+    </record>
+
+    <!-- Contrats -->
+    <record id="contrat_01" model="it.contrat">
+        <field name="name">Contrat Maintenance Dell</field>
+        <field name="type_contrat">maintenance</field>
+        <field name="date_debut">2024-01-01</field>
+        <field name="date_fin">2026-07-15</field>
+        <field name="montant">2500000</field>
+        <field name="state">actif</field>
+    </record>
+    <record id="contrat_02" model="it.contrat">
+        <field name="name">Licence Microsoft Office 365</field>
+        <field name="type_contrat">licence</field>
+        <field name="date_debut">2024-03-01</field>
+        <field name="date_fin">2026-07-01</field>
+        <field name="montant">1800000</field>
+        <field name="state">actif</field>
+    </record>
+    <record id="contrat_03" model="it.contrat">
+        <field name="name">Support Technique Cisco</field>
+        <field name="type_contrat">support</field>
+        <field name="date_debut">2023-06-01</field>
+        <field name="date_fin">2025-06-01</field>
+        <field name="montant">950000</field>
+        <field name="state">expire</field>
+    </record>
+
+    <!-- Interventions -->
+    <record id="intervention_01" model="it.intervention">
+        <field name="name">Remplacement disque dur Dell Latitude</field>
+        <field name="equipement_id" ref="equipement_01"/>
+        <field name="type_intervention">reparation</field>
+        <field name="date_debut">2026-06-01 08:00:00</field>
+        <field name="date_fin">2026-06-01 12:00:00</field>
+        <field name="state">termine</field>
+        <field name="cout">75000</field>
+    </record>
+    <record id="intervention_02" model="it.intervention">
+        <field name="name">Maintenance préventive serveur</field>
+        <field name="equipement_id" ref="equipement_03"/>
+        <field name="type_intervention">maintenance</field>
+        <field name="date_debut">2026-06-10 09:00:00</field>
+        <field name="date_fin">2026-06-10 17:00:00</field>
+        <field name="state">termine</field>
+        <field name="cout">120000</field>
+    </record>
+    <record id="intervention_03" model="it.intervention">
+        <field name="name">Configuration réseau WiFi</field>
+        <field name="equipement_id" ref="equipement_08"/>
+        <field name="type_intervention">configuration</field>
+        <field name="date_debut">2026-06-19 10:00:00</field>
+        <field name="date_fin">2026-06-19 14:00:00</field>
+        <field name="state">planifie</field>
+        <field name="cout">45000</field>
+    </record>
+    <record id="intervention_04" model="it.intervention">
+        <field name="name">Installation OS Lenovo ThinkPad</field>
+        <field name="equipement_id" ref="equipement_05"/>
+        <field name="type_intervention">installation</field>
+        <field name="date_debut">2026-06-18 08:00:00</field>
+        <field name="date_fin">2026-06-18 16:00:00</field>
+        <field name="state">en_cours</field>
+        <field name="cout">60000</field>
+    </record>
+    <record id="intervention_05" model="it.intervention">
+        <field name="name">Réparation Canon ImageRunner</field>
+        <field name="equipement_id" ref="equipement_07"/>
+        <field name="type_intervention">reparation</field>
+        <field name="date_debut">2026-05-20 09:00:00</field>
+        <field name="date_fin">2026-05-20 18:00:00</field>
+        <field name="state">termine</field>
+        <field name="cout">200000</field>
+    </record>
+</odoo>

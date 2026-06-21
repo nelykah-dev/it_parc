@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_it_contrat_form" model="ir.ui.view">
+        <field name="name">it.contrat.form</field>
+        <field name="model">it.contrat</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_export_excel" string="📥 Exporter Excel" type="object" class="btn-secondary"/>
+
+                    <button name="action_renouveler" string="Renouveler" type="object"
+                            class="btn-primary" invisible="state != 'actif'"/>
+                    <button name="action_resilier" string="Résilier" type="object"
+                            class="btn-danger" invisible="state in ['resilie','expire']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="actif,renouvele,expire,resilie"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="partner_id"/>
+                            <field name="type_contrat"/>
+                            <field name="montant"/>
+                        </group>
+                        <group>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="jours_restants"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Équipements Couverts">
+                            <field name="equipement_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="type_equipement"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_contrat_list" model="ir.ui.view">
+        <field name="name">it.contrat.list</field>
+        <field name="model">it.contrat</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="jours_restants &lt; 30" decoration-warning="jours_restants &lt; 60">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type_contrat"/>
+                <field name="date_fin"/>
+                <field name="jours_restants"/>
+                <field name="montant"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'actif'"
+                       decoration-danger="state == 'expire'"
+                       decoration-warning="state == 'resilie'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_it_contrat" model="ir.actions.act_window">
+        <field name="name">Contrats</field>
+        <field name="res_model">it.contrat</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
