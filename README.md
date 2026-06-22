@@ -1,10 +1,10 @@
-# IT Parc — Module Odoo 18
+ IT Parc — Module Odoo 18
 
 Module de gestion de parc informatique développé pour **TECHPARK CI** dans le cadre du cours de développement Odoo 18.
 
 ---
 
-## Informations générales
+Informations générales
 
 | Champ | Valeur |
 |---|---|
@@ -17,7 +17,7 @@ Module de gestion de parc informatique développé pour **TECHPARK CI** dans le 
 
 ---
 
-## Fonctionnalités
+Fonctionnalités
 
 1. **Gestion des équipements** — Suivi complet avec workflow 4 états (Disponible, Affecté, En Maintenance, Hors Service)
 2. **Affectation des employés** — Lien avec le module RH, historique des affectations
@@ -30,7 +30,7 @@ Module de gestion de parc informatique développé pour **TECHPARK CI** dans le 
 
 ---
 
-## Prérequis
+Prérequis
 
 - Odoo 18.0
 - Python 3.11+
@@ -40,15 +40,15 @@ Module de gestion de parc informatique développé pour **TECHPARK CI** dans le 
 
 ---
 
-## Installation
+Installation
 
-### Étape 1 — Cloner le dépôt
+Étape 1 — Cloner le dépôt
 
 ```bash
 git clone https://github.com/nelykah-dev/it_parc.git
 ```
 
-### Étape 2 — Copier le module dans le dossier addons
+ Étape 2 — Copier le module dans le dossier addons
 
 Sur Linux/Mac :
 ```bash
@@ -60,87 +60,57 @@ Sur Windows :
 xcopy /E /I it_parc C:\chemin\vers\odoo-18.0\addons\it_parc
 ```
 
-### Étape 3 — Installer les dépendances Python
+ Étape 3 — Installer les dépendances Python
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Étape 4 — Installer le module
+ Étape 4 — Installer le module
 
-```bash
+bash
 python odoo-bin -c odoo.conf -d NOM_BASE -i it_parc
-```
+
 
 Ou via l'interface : **Apps** → rechercher `it_parc` → **Activer**
 
----
 
-## Structure du module
+Structure du module
 
-it_parc/ 
+\
+it_parc/
+├── __init__.py
+├── __manifest__.py
+├── README.md
+├── models/
+│   ├── __init__.py
+│   ├── it_equipement.py
+│   ├── it_intervention.py
+│   ├── it_contrat.py
+│   ├── it_alerte.py
+│   └── it_parc_excel.py
+├── views/
+│   ├── it_equipement_views.xml
+│   ├── it_intervention_views.xml
+│   ├── it_contrat_views.xml
+│   ├── it_alerte_views.xml
+│   └── menu_views.xml
+├── report/
+│   └── it_parc_reports.xml
+├── security/
+│   └── ir.model.access.csv
+├── data/
+│   ├── it_parc_cron.xml
+│   └── it_parc_demo.xml
+└── static/
+    └── src/
+        └── components/
+            ├── dashboard.js
+            ├── dashboard.xml
+            └── dashboard.css
+\
 
-├── init.py
-
- ├── manifest.py ├── 
-
-README.md 
-
-├── models/ 
-
-│ ├── init.py
-
- │ ├── it_equipement.py │ 
-
-├── 
-
-it_intervention.py 
-
-│ ├── it_contrat.py │ ├── it_alerte.py 
-
-│ └── it_parc_excel.py 
-
-├── views/ 
-
-│ ├── it_equipement_views.xml 
-
-│ ├── it_intervention_views.xml 
-
-│ ├── it_contrat_views.xml 
-
-│ ├── it_alerte_views.xml 
-
-│ └── menu_views.xml 
-
-├── report/ 
-
-│ └── it_parc_reports.xml 
-
-├── security/ 
-
-│ └── ir.model.access.csv 
-
-├── data/ 
-
-│ ├── it_parc_cron.xml 
-
-│ └── it_parc_demo.xml 
-
-└── static/ 
-
-└── src/ 
-
-└── components/ 
-
-├── dashboard.js 
-
-├── dashboard.xml 
-
-└── dashboard.css
-
----
-
-## Données de démonstration
+ Données de démonstration
 
 Le fichier `it_parc_demo.xml` contient :
 - **10 équipements** (ordinateurs, imprimantes, serveurs, équipements réseau)
@@ -149,7 +119,7 @@ Le fichier `it_parc_demo.xml` contient :
 
 ---
 
-## Groupes de sécurité
+ Groupes de sécurité
 
 | Groupe | Droits |
 |---|---|
