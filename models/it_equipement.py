@@ -36,10 +36,11 @@ class ItEquipement(models.Model):
     intervention_count = fields.Integer(string='Nb Interventions', compute='_compute_intervention_count')
 
     @api.depends('intervention_ids')
+    # Calcule le nombre d'interventions liées à cet équipement
     def _compute_intervention_count(self):
         for rec in self:
             rec.intervention_count = len(rec.intervention_ids)
-
+# Change l'état de l'équipement à "affecté"
     def action_affecter(self):
         self.state = 'affecte'
 
